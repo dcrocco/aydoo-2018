@@ -7,17 +7,17 @@ public class Tablero {
 
     ArrayList<Bote> listaDeBotes = new ArrayList<Bote>();
 
-    public ResultadoDeDisparo recibirDisparo(int fila, int columna) {
+    public ResultadoDeDisparo recibirDisparo(Posicion posicionIndicada) {
         for (Bote bote : listaDeBotes) {
-            if(bote.estaEn(fila,columna)){
+            if(bote.estaEn(posicionIndicada)){
                 return ResultadoDeDisparo.HUNDIDO;
             }
         }
         return ResultadoDeDisparo.AGUA;
     }
 
-    public void ubicarBote(Bote unBote, int fila, int columna) {
-        unBote.setPosicion(fila, columna);
+    public void ubicarBote(Bote unBote, Posicion posicionIndicada) {
+        unBote.setPosicion(posicionIndicada);
         listaDeBotes.add(unBote);
     }
 }

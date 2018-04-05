@@ -2,11 +2,13 @@ package ar.edu.untref.aydoo;
 
 public class Bote {
 
-    public void setPosicion(int fila, int columna) {
+    private Posicion posicionDelBote;
+
+    public void setPosicion(Posicion unaPosicion) {
 
     }
 
-    public boolean estaEn(int fila, int columna) {
+    public boolean estaEn(Posicion unaPosicion) {
         return true;
     }
 }
