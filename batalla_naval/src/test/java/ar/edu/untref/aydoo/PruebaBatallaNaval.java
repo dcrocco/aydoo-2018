@@ -12,4 +12,13 @@ public class PruebaBatallaNaval {
         ResultadoDeDisparo resultadoDeDisparo = tablero.recibirDisparo(1, 1);
         Assert.assertEquals(ResultadoDeDisparo.AGUA, resultadoDeDisparo);
     }
+
+    @Test
+    public void disparoATableroCuandoTocoUnBoteYDevuelveHundido(){
+        Tablero tablero = new Tablero();
+        Bote unBote = new Bote();
+        tablero.ubicarBote(unBote,1, 1);
+        ResultadoDeDisparo resultadoDeDisparo = tablero.recibirDisparo(1, 1);
+        Assert.assertEquals(ResultadoDeDisparo.HUNDIDO, resultadoDeDisparo);
+    }
 }

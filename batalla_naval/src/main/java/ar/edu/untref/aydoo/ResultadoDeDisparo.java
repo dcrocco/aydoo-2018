@@ -1,5 +1,5 @@
 package ar.edu.untref.aydoo;
 
 public enum ResultadoDeDisparo {
-    AGUA;
+    AGUA,HUNDIDO;
 }
