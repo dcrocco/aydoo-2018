@@ -1,23 +1,27 @@
 package ar.edu.untref.aydoo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Tablero {
 
-    ArrayList<Bote> listaDeBotes = new ArrayList<Bote>();
+    ArrayList<Barco> listaDeBarcos = new ArrayList<>();
 
     public ResultadoDeDisparo recibirDisparo(Posicion posicionIndicada) {
-        for (Bote bote : listaDeBotes) {
-            if(bote.estaEn(posicionIndicada)){
-                return ResultadoDeDisparo.HUNDIDO;
+        for (Barco barco: listaDeBarcos) {
+            if(barco.estaEn(posicionIndicada)){
+                return barco.recibirDisparo();
             }
         }
         return ResultadoDeDisparo.AGUA;
     }
 
-    public void ubicarBote(Bote unBote, Posicion posicionIndicada) {
-        unBote.setPosicion(posicionIndicada);
-        listaDeBotes.add(unBote);
+    public void ubicarBote(Bote unBote, Posicion posicion) {
+        unBote.setPosicion(posicion);
+        listaDeBarcos.add(unBote);
+    }
+
+    public void ubicarCrucero(Crucero unCrucero, Posicion posicion) {
+        unCrucero.setPosicion(posicion);
+        listaDeBarcos.add(unCrucero);
     }
 }
