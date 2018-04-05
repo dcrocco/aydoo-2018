@@ -28,8 +28,10 @@ public class FibonacciCalculator {
      * @param int position: Cantidad de posiciones a imprimir
      */
     public void show_fibonacci_number(int position){
+        String result = "fibo<"+position+">: ";
     	for (int i = 0; i < position; i++){
-            System.out.print(get_fibonacci_number(i)+ " ");
+            result += get_fibonacci_number(i)+ " ";
         }
+        System.out.println(result);      
     }
 }
