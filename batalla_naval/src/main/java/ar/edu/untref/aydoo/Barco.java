@@ -1,19 +1,19 @@
 package ar.edu.untref.aydoo;
 
-public class Barco {
+abstract class Barco {
 
-    private Posicion posicionDelBote;
+    private Posicion posicionDelbarco;
 
-    public void setPosicion(Posicion unaPosicion) {
-
+    void setPosicion(Posicion unaPosicion) {
+        this.posicionDelbarco = unaPosicion;
     }
 
-    public boolean estaEn(Posicion unaPosicion) {
-        return true;
+    Posicion getPosicion(){
+        return this.posicionDelbarco;
     }
 
-    public ResultadoDeDisparo recibirDisparo() {
-        return ResultadoDeDisparo.HUNDIDO;
-    }
+    abstract boolean estaEn(Posicion unaPosicion);
+
+    abstract ResultadoDeDisparo recibirDisparo();
 
 }

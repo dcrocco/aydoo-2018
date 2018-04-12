@@ -50,4 +50,16 @@ public class PruebaTablero {
         Assert.assertEquals(ResultadoDeDisparo.HUNDIDO, resultadoDeSegundoDisparo);
     }
 
+    @Test
+    public void disparoDosVecesATableroCuandoTocoUnCruceroVerticalYDevuelveHundido(){
+        Tablero tablero = new Tablero();
+        Crucero unCrucero = new Crucero();
+        unCrucero.setOrientacionHorizontal(false);
+        tablero.ubicarCrucero(unCrucero, new Posicion(1, 1));
+        ResultadoDeDisparo resultadoDeDisparo = tablero.recibirDisparo(new Posicion(1, 1));
+        Assert.assertEquals(ResultadoDeDisparo.TOCADO, resultadoDeDisparo);
+        ResultadoDeDisparo resultadoDeSegundoDisparo = tablero.recibirDisparo(new Posicion(2, 1));
+        Assert.assertEquals(ResultadoDeDisparo.HUNDIDO, resultadoDeSegundoDisparo);
+    }
+
 }
