@@ -5,11 +5,13 @@ class Vaso {
     private int cantidadDeAzucar;
     private boolean tieneCafe;
     private boolean tieneTe;
+    private boolean tieneLeche;
 
     Vaso() {
         this.cantidadDeAzucar = 0;
         this.tieneCafe = false;
         this.tieneTe = false;
+        this.tieneLeche = false;
     }
 
     void setCantidadDeAzucar(final int cantAzucar) {
@@ -21,7 +23,7 @@ class Vaso {
     }
 
     void setTieneCafe() {
-        this.tieneCafe = !this.tieneCafe;
+        this.tieneCafe = true;
     }
 
     boolean tieneCafe() {
@@ -29,7 +31,7 @@ class Vaso {
     }
 
     void setTieneTe() {
-        this.tieneTe = !this.tieneTe;
+        this.tieneTe = true;
     }
 
     boolean tieneTe() {
@@ -37,7 +39,10 @@ class Vaso {
     }
 
     boolean tieneAzucar() {
-        return this.cantidadDeAzucar > 0;
+        return this.getCantidadDeAzucar() > 0;
     }
 
+    void setTieneLeche() {
+        this.tieneLeche = true;
+    }
 }
