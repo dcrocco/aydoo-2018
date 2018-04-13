@@ -48,13 +48,8 @@ public class Crucero extends Barco{
         if (this.isOrientacionHorizontal()){
             for (int i = 0; i < this.longitud; i++){
                 columna += i;
-                System.out.println("PROBANDO SUPERPOSICION EN");
-                System.out.println(fila);
-                System.out.println(columna);
-                System.out.println("OUT");
 
                 seSuperponen = unBarco.estaEn(new Posicion(fila, columna));
-                System.out.println(seSuperponen);
                 if (seSuperponen) break;
             }
         }else{
@@ -88,9 +83,6 @@ public class Crucero extends Barco{
             while (longitud > 0){
                 longitud--;
                 estaEnColumna = columna_posicion == columna_barco + longitud;
-                System.out.println(columna_posicion);
-                System.out.println(columna_barco + longitud);
-
                 if (estaEnColumna) break;
             }
         }else{
