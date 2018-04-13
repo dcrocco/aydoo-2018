@@ -16,4 +16,8 @@ abstract class Barco {
 
     abstract ResultadoDeDisparo recibirDisparo();
 
+    abstract Posicion obtenerLimites();
+
+    abstract boolean seSuperponeCon(Barco unBarco);
+
 }

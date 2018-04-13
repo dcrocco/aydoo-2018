@@ -15,4 +15,14 @@ class Bote extends Barco {
         return ResultadoDeDisparo.HUNDIDO;
     }
 
+    @Override
+    Posicion obtenerLimites() {
+        return this.getPosicion();
+    }
+
+    @Override
+    boolean seSuperponeCon(Barco unBarco) {
+        return unBarco.estaEn(this.getPosicion());
+    }
+
 }

@@ -23,6 +23,51 @@ public class Crucero extends Barco{
     }
 
     /**
+     * Obtiene los limites del barco en base a su longitud, siendo los limites el valor mas alto de fila y columna.
+     * @return Posicion: Posicion de sus limites
+     */
+    @Override
+    Posicion obtenerLimites() {
+        int filas = this.getPosicion().getFila();
+        int columnas = this.getPosicion().getColumna();
+
+        if (this.isOrientacionHorizontal()){
+            filas += this.longitud - 1;
+        }else{
+            columnas += this.longitud - 1;
+        }
+        return new Posicion(filas, columnas);
+    }
+
+    @Override
+    boolean seSuperponeCon(Barco unBarco) {
+        int fila = this.getPosicion().getFila();
+        int columna = this.getPosicion().getColumna();
+        boolean seSuperponen = false;
+
+        if (this.isOrientacionHorizontal()){
+            for (int i = 0; i < this.longitud; i++){
+                columna += i;
+                System.out.println("PROBANDO SUPERPOSICION EN");
+                System.out.println(fila);
+                System.out.println(columna);
+                System.out.println("OUT");
+
+                seSuperponen = unBarco.estaEn(new Posicion(fila, columna));
+                System.out.println(seSuperponen);
+                if (seSuperponen) break;
+            }
+        }else{
+            for (int i = 0; i < this.longitud; i++){
+                fila += i;
+                seSuperponen = unBarco.estaEn(new Posicion(fila, columna));
+                if (seSuperponen) break;
+            }
+        }
+        return seSuperponen;
+    }
+
+    /**
      * Calcula la posición del barco segun la longitud del barco y su orientacion.
      *
      * @param unaPosicion : Posicion a comparar
@@ -43,6 +88,9 @@ public class Crucero extends Barco{
             while (longitud > 0){
                 longitud--;
                 estaEnColumna = columna_posicion == columna_barco + longitud;
+                System.out.println(columna_posicion);
+                System.out.println(columna_barco + longitud);
+
                 if (estaEnColumna) break;
             }
         }else{
