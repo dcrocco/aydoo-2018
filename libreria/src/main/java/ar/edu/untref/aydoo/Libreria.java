@@ -7,6 +7,7 @@ class Libreria {
 
     private List<Venta> ventas;
     private List<Cliente> clientes;
+    private List<Subscripcion> subscripciones;
 
     Libreria(){
         this.ventas = new ArrayList<>();
@@ -17,7 +18,7 @@ class Libreria {
 
         Float importeACobrar = 0.0f;
         for (Venta venta: this.getVentas()) {
-            importeACobrar += venta.obtenerImporteACobrar();
+            importeACobrar += venta.obtenerImporteACobrar(this);
         }
 
         return importeACobrar;
@@ -28,11 +29,16 @@ class Libreria {
         this.ventas.add(ventaARegistrar);
     }
 
+    void registrarCliente(Cliente clienteARegistrar) {
+        this.clientes.add(clienteARegistrar);
+    }
+
+    boolean estaRegistrado(Cliente cliente) {
+        return this.clientes.contains(cliente);
+    }
+
     private List<Venta> getVentas(){
         return this.ventas;
     }
 
-    void registrarCliente(Cliente clienteARegistrar) {
-        this.clientes.add(clienteARegistrar);
-    }
 }

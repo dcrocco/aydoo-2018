@@ -5,21 +5,27 @@ class Venta {
     private Integer mes;
     private Integer anio;
     private Cliente cliente;
-    private Producto libro;
+    private Producto producto;
 
     Venta(Integer mes, Integer anio, Cliente unCliente, Producto unProducto) {
         this.mes = mes;
         this.anio = anio;
         this.cliente = unCliente;
-        this.libro = unProducto;
+        this.producto = unProducto;
     }
 
-    Float obtenerImporteACobrar() {
-        return this.getLibro().getPrecio();
+    Float obtenerImporteACobrar(Libreria libreria) {
+        producto = this.getProducto();
+        cliente = this.getCliente();
+        return CalculadorDeDescuento.CalcularDescuento(producto, cliente, libreria);
     }
 
-    private Producto getLibro() {
-        return this.libro;
+    private Cliente getCliente() {
+        return this.cliente;
+    }
+
+    private Producto getProducto() {
+        return this.producto;
     }
 
 }
