@@ -8,7 +8,7 @@ public class VentaTest {
     @Test
     public void ventaDeUnLibroDe500AClienteNoRegistradoEnEneroDe2018() {
         Libreria libreria = new Libreria();
-        Cliente unCliente = new Cliente();
+        Cliente unCliente = new Cliente("Juan", "Calle de Juan");
         Producto unLibro = new Producto(500);
         Fecha fecha = new Fecha(1, 2018);
         Venta venta = new Venta(fecha, unCliente, unLibro);
@@ -19,7 +19,7 @@ public class VentaTest {
     @Test
     public void ventaDeUnaRevistaDe300AClienteRegistradoEnEneroDe2018() {
         Libreria libreria = new Libreria();
-        Cliente unCliente = new Cliente();
+        Cliente unCliente = new Cliente("Juan", "Calle de Juan");
         Producto unLibro = new Producto(300);
         libreria.registrarCliente(unCliente);
         Fecha fecha = new Fecha(1, 2018);

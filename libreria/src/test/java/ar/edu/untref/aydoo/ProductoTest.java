@@ -11,5 +11,20 @@ public class ProductoTest {
         Assert.assertEquals(200.0f, libro.getPrecio(),0.001);
     }
 
+    @Test
+    public void obtenerPeriodicidadDeUnPeriodico() {
+        ProductoSubscripcion periodico = new ProductoSubscripcion(200.0f, 8);
+        Assert.assertEquals(8, periodico.getPeriodicidad(), 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void agregarPrecioCero() {
+        new Producto(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void agregarUnPrecioNegativo() {
+        new Producto(-100);
+    }
 }
 
