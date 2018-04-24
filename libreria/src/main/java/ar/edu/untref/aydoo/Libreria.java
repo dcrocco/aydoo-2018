@@ -19,7 +19,10 @@ class Libreria {
 
         Float importeACobrar = 0.0f;
         for (Venta venta: this.getVentas()) {
-            importeACobrar += venta.obtenerImporteACobrar(this);
+            if (venta.getFecha() == fecha && cliente == venta.getCliente()){
+                importeACobrar += venta.obtenerImporteACobrar(this);
+                System.out.println(importeACobrar);
+            }
         }
 
         return importeACobrar;
@@ -38,9 +41,9 @@ class Libreria {
         return this.clientes.contains(cliente);
     }
 
-    boolean tieneSubscripcion(Cliente cliente) {
+    boolean tieneSubscripcion(Cliente cliente, Producto producto) {
         for (Subscripcion subscripcion: this.getSubscripciones()){
-            if (subscripcion.getCliente() == cliente){
+            if (subscripcion.getCliente() == cliente && subscripcion.getProducto() == producto){
                 return true;
             }
         }
@@ -53,8 +56,8 @@ class Libreria {
         return this.ventas;
     }
 
-    public void registrarSubscripcion(Cliente unCliente, Fecha fecha_inicial, Fecha fecha_final) {
-        Subscripcion subscripcionARegistrar = new Subscripcion(unCliente, fecha_inicial, fecha_final);
+    public void registrarSubscripcion(Cliente unCliente, Fecha fecha_inicial, Fecha fecha_final, Producto producto) {
+        Subscripcion subscripcionARegistrar = new Subscripcion(unCliente, fecha_inicial, fecha_final, producto);
         this.subscripciones.add(subscripcionARegistrar);
     }
 

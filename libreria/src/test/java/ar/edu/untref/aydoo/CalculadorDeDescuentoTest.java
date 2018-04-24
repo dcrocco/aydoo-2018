@@ -27,13 +27,13 @@ public class CalculadorDeDescuentoTest {
     @Test
     public void calcularDescuentoDeUnPeriodicoConSubscripcion() {
         Libreria libreria = new Libreria();
-        Producto unLibro = new Producto(150.0f);
+        Producto unPeriodico = new Producto(150.0f);
         Cliente unCliente = new Cliente();
         Fecha fecha_inicial = new Fecha(12, 2017);
         Fecha fecha_final = new Fecha(12, 2018);
-        libreria.registrarSubscripcion(unCliente, fecha_inicial, fecha_final);
-        Float importeConDescuento = CalculadorDeDescuento.CalcularDescuento(unLibro, unCliente, libreria);
-        Assert.assertEquals(112.5f, importeConDescuento, 0.001);
+        libreria.registrarSubscripcion(unCliente, fecha_inicial, fecha_final, unPeriodico);
+        Float importeConDescuento = CalculadorDeDescuento.CalcularDescuento(unPeriodico, unCliente, libreria);
+        Assert.assertEquals(120.0f, importeConDescuento, 0.001);
     }
 
 }

@@ -4,7 +4,7 @@ package ar.edu.untref.aydoo;
 class CalculadorDeDescuento {
 
     private static final float DESCUENTO_CLIENTE_REGISTRADO = 0.05f;
-    private static final float DESCUENTO_SUBSCRIPCION = 0.25f;
+    private static final float DESCUENTO_SUBSCRIPCION = 0.20f;
 
     /**
      * Si el producto tiene una subscripción, se hace un 20% de descuento.
@@ -16,7 +16,7 @@ class CalculadorDeDescuento {
     static float CalcularDescuento(Producto producto, Cliente cliente, Libreria libreria) {
 
         Float precio = producto.getPrecio();
-        if (libreria.tieneSubscripcion(cliente)){
+        if (libreria.tieneSubscripcion(cliente, producto)){
             precio *= (1 - DESCUENTO_SUBSCRIPCION);
         } else if (libreria.estaRegistrado(cliente)){
             precio *= (1 - DESCUENTO_CLIENTE_REGISTRADO);

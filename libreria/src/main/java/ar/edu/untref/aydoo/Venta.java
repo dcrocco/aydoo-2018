@@ -18,8 +18,12 @@ class Venta {
         return CalculadorDeDescuento.CalcularDescuento(producto, cliente, libreria);
     }
 
-    private Cliente getCliente() {
+    Cliente getCliente() {
         return this.cliente;
+    }
+
+    Fecha getFecha() {
+        return this.fecha;
     }
 
     private Producto getProducto() {
