@@ -2,14 +2,12 @@ package ar.edu.untref.aydoo;
 
 class Venta {
 
-    private Integer mes;
-    private Integer anio;
+    private Fecha fecha;
     private Cliente cliente;
     private Producto producto;
 
-    Venta(Integer mes, Integer anio, Cliente unCliente, Producto unProducto) {
-        this.mes = mes;
-        this.anio = anio;
+    Venta(Fecha fecha, Cliente unCliente, Producto unProducto) {
+        this.fecha = fecha;
         this.cliente = unCliente;
         this.producto = unProducto;
     }

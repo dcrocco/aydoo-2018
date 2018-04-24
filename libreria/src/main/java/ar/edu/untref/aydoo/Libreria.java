@@ -12,9 +12,10 @@ class Libreria {
     Libreria(){
         this.ventas = new ArrayList<>();
         this.clientes = new ArrayList<>();
+        this.subscripciones = new ArrayList<>();
     }
 
-    Float obtenerCobroMensual(int mes, int anio, Cliente cliente) {
+    Float obtenerCobroMensual(Fecha fecha, Cliente cliente) {
 
         Float importeACobrar = 0.0f;
         for (Venta venta: this.getVentas()) {
@@ -24,8 +25,8 @@ class Libreria {
         return importeACobrar;
     }
 
-    void registrarVenta(Integer mes, Integer anio, Cliente unCliente, Producto unProducto) {
-        Venta ventaARegistrar = new Venta(mes, anio, unCliente, unProducto);
+    void registrarVenta(Fecha fecha, Cliente unCliente, Producto unProducto) {
+        Venta ventaARegistrar = new Venta(fecha, unCliente, unProducto);
         this.ventas.add(ventaARegistrar);
     }
 
@@ -37,8 +38,24 @@ class Libreria {
         return this.clientes.contains(cliente);
     }
 
+    boolean tieneSubscripcion(Cliente cliente) {
+        for (Subscripcion subscripcion: this.getSubscripciones()){
+            if (subscripcion.getCliente() == cliente){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<Subscripcion> getSubscripciones() { return this.subscripciones; }
+
     private List<Venta> getVentas(){
         return this.ventas;
+    }
+
+    public void registrarSubscripcion(Cliente unCliente, Fecha fecha_inicial, Fecha fecha_final) {
+        Subscripcion subscripcionARegistrar = new Subscripcion(unCliente, fecha_inicial, fecha_final);
+        this.subscripciones.add(subscripcionARegistrar);
     }
 
 }

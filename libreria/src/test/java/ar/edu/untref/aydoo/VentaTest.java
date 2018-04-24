@@ -10,7 +10,8 @@ public class VentaTest {
         Libreria libreria = new Libreria();
         Cliente unCliente = new Cliente();
         Producto unLibro = new Producto(500);
-        Venta venta = new Venta(1, 2018, unCliente, unLibro);
+        Fecha fecha = new Fecha(1, 2018);
+        Venta venta = new Venta(fecha, unCliente, unLibro);
         Float importeACobrar = venta.obtenerImporteACobrar(libreria);
         Assert.assertEquals(500.0f, importeACobrar, 0.001);
     }
@@ -21,7 +22,8 @@ public class VentaTest {
         Cliente unCliente = new Cliente();
         Producto unLibro = new Producto(300);
         libreria.registrarCliente(unCliente);
-        Venta venta = new Venta(1, 2018, unCliente, unLibro);
+        Fecha fecha = new Fecha(1, 2018);
+        Venta venta = new Venta(fecha, unCliente, unLibro);
         Float importeACobrar = venta.obtenerImporteACobrar(libreria);
         Assert.assertEquals(285.0f, importeACobrar, 0.001);
     }
