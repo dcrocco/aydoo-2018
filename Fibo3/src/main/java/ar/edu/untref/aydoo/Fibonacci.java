@@ -3,7 +3,7 @@ package ar.edu.untref.aydoo;
 public class Fibonacci {
 
 
-    private static String[] validArguments = new String[]{"-o=[vh][di]", "-m=[l][s]", "-f=[^\\s]+"};
+    private static String[] validArguments = new String[]{"-o=[vh][di]", "-m=[ls]", "-f=[^\\s]+"};
 
     /**
      * Imprime por pantalla la secuencia de fibonacci, con la opción de poder imprimirla vertical u horizontalmente
@@ -49,15 +49,14 @@ public class Fibonacci {
     static void validate_input(String[] args) {
         if (args.length > 1){
             boolean legal_arguments;
-            for (int i = 0; i < args.length; i++){
+            for (int i = 0; i < args.length - 1; i++) {
                 legal_arguments = false;
-                for (int j = 0; j < validArguments.length; i++) {
-                    System.out.println(validArguments);
-                    if (args[i].matches(validArguments[j])){
+                for (String validArgument : validArguments) {
+                    if (args[i].matches(validArgument)) {
                         legal_arguments = true;
                     }
                 }
-                if (!legal_arguments){
+                if (!legal_arguments) {
                     throw new IllegalArgumentException("Opción no válida!");
                 }
             }
