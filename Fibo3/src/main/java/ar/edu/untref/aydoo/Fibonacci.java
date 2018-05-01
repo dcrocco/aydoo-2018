@@ -66,7 +66,7 @@ public class Fibonacci {
         if (saveToFile){
             try{
                 FileSaver.saveToFile(stringSequence, fileName);
-                stringSequence = "guardado en "+fileName;
+                stringSequence = prefix+" guardado en "+fileName;
             }catch (IOException e){
                 stringSequence = "Error al intentar guardar el archivo.";
             }
