@@ -1,5 +1,11 @@
 package ar.edu.untref.aydoo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 public class Fibonacci {
 
 
@@ -14,39 +20,69 @@ public class Fibonacci {
      */	
     public static void main(String args[]) throws IllegalArgumentException {
         try{
-            validate_input(args);
+            validateInput(args);
         }catch (Exception IllegalArgumentException){
             System.out.println("Opciones no validas.");
             return;
         }
-        int fibo_number = ((args.length > 1) ? Integer.parseInt(args[1]) : Integer.parseInt(args[0]));
-        FibonacciCalculator fibo_calc = new FibonacciCalculator();
-        String string_sequence = fibo_calc.get_fibonacci_string_sequence(fibo_number);
-        System.out.println(print_fibonacci_sequence(string_sequence, fibo_number, args));
+        int fibo_number = Integer.parseInt(args[args.length -1 ]);
+        String stringSequence = getStringSequence(fibo_number, args);
+        System.out.println(printFibonacciSequence(stringSequence, fibo_number, args));
     }
 
     /**
      * Imprime la secuencia de fibonacci decorada con los argumentos especificados
-     * @param string_sequence: Secuencia de fibonacci.
+     * @param stringSequence: Secuencia de fibonacci.
      * @param fibo_number: Cantidad de valores de la secuencia a imprimir.
-     * @param args: Argumentos para decorar el ouput, ya sea cambiando su orientación o dirección.
+     * @param args: Argumentos para decorar el ouput, ya sea cambiando su orientación, dirección, sumada o en un archivo.
      * @return: Secuencia decorada con los argumentos.
      */
-    static String print_fibonacci_sequence(String string_sequence, int fibo_number, String[] args) {
+    static String printFibonacciSequence(String stringSequence, int fibo_number, String[] args) {
+
+        String prefix = "fibo<"+fibo_number+">";
+        boolean saveToFile = false;
+        String fileName = "";
 
         if (args.length > 1){
-            string_sequence = new PrinterWithDirection(args[0].charAt(4)).print(string_sequence);
-            string_sequence = new PrinterWithOrientation(args[0].charAt(3)).print(string_sequence);
+            List argsAsList = Arrays.asList(args);
+            if (argsAsList.contains("-m=s")){
+                prefix += "s";
+                stringSequence = " " + stringSequence;
+            }
+
+            for (int i = 0; i < args.length - 1; i++){
+                if (args[i].matches("-o=[vh][i]")){
+                    stringSequence = new PrinterWithDirection('i').print(stringSequence);
+                }
+                if (args[i].matches("-o=[v][di]")){
+                    stringSequence = new PrinterWithOrientation('v').print(stringSequence);
+                }
+                if (args[i].matches("-f=[^\\s]+")){
+                    fileName = args[i].substring(3, args[i].length());
+                    saveToFile = true;
+                }
+
+            }
+        }
+        stringSequence = prefix+":"+stringSequence;
+
+        if (saveToFile){
+            try{
+                FileSaver.saveToFile(stringSequence, fileName);
+                stringSequence = "guardado en "+fileName;
+            }catch (IOException e){
+                stringSequence = "Error al intentar guardar el archivo.";
+            }
         }
 
-        return "fibo<"+fibo_number+">:"+string_sequence;
+        return stringSequence;
     }
 
     /**
      * Valida que el input tenga formato válido. Debe ser un entero en el caso de un argumento,
      * en el caso de dos argumentos tiene que cumplir con el formato de la expresión regular.
      */
-    static void validate_input(String[] args) {
+    static void validateInput(String[] args) {
         if (args.length > 1){
             boolean legal_arguments;
             for (int i = 0; i < args.length - 1; i++) {
@@ -67,6 +103,23 @@ public class Fibonacci {
         }catch (Exception e){
             throw new IllegalArgumentException("Debe ingresar un número entero");
         }
+    }
+
+    static String getStringSequence(int fibo_number, String[] args) {
+
+        FibonacciCalculator fibo_calc = new FibonacciCalculator();
+        List argsAsList = Arrays.asList(args);
+
+        String stringSequence;
+        if (argsAsList.contains("-m=s")){
+            FibonacciAdder fiboAdder = new FibonacciAdder();
+            int addedSequence = fiboAdder.get_fibonacci_added_sequence(fibo_number, fibo_calc);
+            stringSequence = Integer.toString(addedSequence);
+        }else{
+            stringSequence = fibo_calc.getFibonacciStringSequence(fibo_number);
+        }
+
+        return stringSequence;
     }
 
 }

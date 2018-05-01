@@ -28,7 +28,7 @@ class FibonacciCalculator {
      * @param position: Cantidad de posiciones a imprimir.
      * @return String: string formado.
      */
-    String get_fibonacci_string_sequence(int position){
+    String getFibonacciStringSequence(int position){
         StringBuilder result = new StringBuilder();
     	for (int i = 0; i < position; i++){
             result.append(" ").append(get_fibonacci_number(i));
