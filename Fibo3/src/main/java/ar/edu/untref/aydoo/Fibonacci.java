@@ -3,6 +3,8 @@ package ar.edu.untref.aydoo;
 public class Fibonacci {
 
 
+    private static String[] validArguments = new String[]{"-o=[vh][di]", "-m=[l][s]", "-f=[^\\s]+"};
+
     /**
      * Imprime por pantalla la secuencia de fibonacci, con la opción de poder imprimirla vertical u horizontalmente
      * y directa o inversamente.
@@ -46,15 +48,25 @@ public class Fibonacci {
      */
     static void validate_input(String[] args) {
         if (args.length > 1){
-            if (! (args[0].matches("-o=[vh][di]") &&  args[1].matches("[0-9]+"))){
-                throw new IllegalArgumentException("Opción no válida!");
+            boolean legal_arguments;
+            for (int i = 0; i < args.length; i++){
+                legal_arguments = false;
+                for (int j = 0; j < validArguments.length; i++) {
+                    System.out.println(validArguments);
+                    if (args[i].matches(validArguments[j])){
+                        legal_arguments = true;
+                    }
+                }
+                if (!legal_arguments){
+                    throw new IllegalArgumentException("Opción no válida!");
+                }
             }
-        }else{
-            try{
-                Integer.parseInt(args[0]);
-            }catch (Exception e){
-                throw new IllegalArgumentException("Debe ingresar un número entero");
-            }
+        }
+        // El ultimo parámetro debe ser el número de la secuencia de fibonacci
+        try{
+            Integer.parseInt(args[args.length - 1]);
+        }catch (Exception e){
+            throw new IllegalArgumentException("Debe ingresar un número entero");
         }
     }
 

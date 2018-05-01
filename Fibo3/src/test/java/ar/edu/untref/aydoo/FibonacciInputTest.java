@@ -33,4 +33,5 @@ public class FibonacciInputTest
         String input[] = new String[]{"-o=xy", "8"};
         Fibonacci.validate_input(input);
     }
+
 }

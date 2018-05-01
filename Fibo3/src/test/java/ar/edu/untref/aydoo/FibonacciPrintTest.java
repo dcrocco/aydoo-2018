@@ -49,4 +49,16 @@ public class FibonacciPrintTest
         );
     }
 
+
+    @Test
+    public void testPrintWithAddAndHorizontalAndDirect() throws IllegalArgumentException {
+        String input[] = new String[]{"-o=hd", "-m=s", "5"};
+        FibonacciCalculator calculator = new FibonacciCalculator();
+        FibonacciAdder fiboAdder = new FibonacciAdder();
+        int added_sequence = fiboAdder.get_fibonacci_added_sequence(5, calculator);
+
+        String sequence = calculator.get_fibonacci_string_sequence(8);
+        Fibonacci.validate_input(input);
+    }
+
 }
