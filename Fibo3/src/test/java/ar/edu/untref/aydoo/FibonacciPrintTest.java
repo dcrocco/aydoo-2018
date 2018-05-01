@@ -57,11 +57,17 @@ public class FibonacciPrintTest
     }
 
     @Test
-    public void testSaveFileWithAnotherArguments() throws IllegalArgumentException {
+    public void testSaveFileWithVertical() throws IllegalArgumentException {
         String input[] = new String[]{"-o=vd", "-f=salida.txt", "5"};
         String sequence = Fibonacci.getStringSequence(5, input);
         Assert.assertEquals("guardado en salida.txt", Fibonacci.printFibonacciSequence(sequence, 5, input));
     }
 
+    @Test
+    public void testSaveFileWithVerticalAndAdded() throws IllegalArgumentException {
+        String input[] = new String[]{"-o=vd", "-f=salida.txt", "-m=s", "5"};
+        String sequence = Fibonacci.getStringSequence(5, input);
+        Assert.assertEquals("guardado en salida.txt", Fibonacci.printFibonacciSequence(sequence, 5, input));
+    }
 
 }
