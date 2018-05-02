@@ -3,6 +3,9 @@ package ar.edu.untref.aydoo;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VotacionesTest {
 
     @Test
@@ -12,14 +15,14 @@ public class VotacionesTest {
         Partido partidoIzquierda = new Partido("Izquierda");
         Candidato candidatoJuan = new Candidato("Juan", partidoDerecha);
         Candidato candidatoCarlos = new Candidato("Carlos", partidoIzquierda);
-        List<Canidato> listaDeCandidatos = new ArrayList<Candidato>();
+        List<Candidato> listaDeCandidatos = new ArrayList<Candidato>();
         Eleccion unaEleccion = new Eleccion(listaDeCandidatos);
 
         Voto votoDerecha1 = new Voto(candidatoJuan);
         Voto votoIzquierda1 = new Voto(candidatoCarlos);
         Voto votoDerecha2 = new Voto(candidatoJuan);
 
-        provincia buenosAires = new Provincia("Buenos Aires");
+        Provincia buenosAires = new Provincia("Buenos Aires");
 
         unaEleccion.agregarVoto(votoDerecha1, buenosAires);
         unaEleccion.agregarVoto(votoIzquierda1, buenosAires);
