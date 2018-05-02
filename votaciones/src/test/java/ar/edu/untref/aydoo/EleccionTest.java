@@ -33,7 +33,7 @@ public class EleccionTest {
     }
 
     @Test
-    public void obtenerCandidatoConMasVotosEnUnaProvincia(){
+    public void obtenerCandidatoConMasVotosEnUnaProvincia() throws VotoInvalidoException {
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
         Voto votoIzquierda1 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
         Voto votoDerecha2 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
@@ -46,7 +46,7 @@ public class EleccionTest {
     }
 
     @Test
-    public void obtenerCandidatoConMasVotosANivelNacional(){
+    public void obtenerCandidatoConMasVotosANivelNacional() throws VotoInvalidoException {
 
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
         Voto votoIzquierda1 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
@@ -60,7 +60,7 @@ public class EleccionTest {
     }
 
     @Test
-    public void obtenerCandidatoConMasVotosANivelNacionalConDistintoEnProvincia(){
+    public void obtenerCandidatoConMasVotosANivelNacionalConDistintoEnProvincia() throws VotoInvalidoException {
 
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
         Voto votoDerecha2 = new Voto(this.candidatoDerecha, this.provinciaSanLuis);
@@ -77,5 +77,12 @@ public class EleccionTest {
         Assert.assertEquals(candidatoDerecha, unaEleccion.obtenerCandidatoConMasVotosNacional());
     }
 
+    @Test(expected = VotoInvalidoException.class)
+    public void agregarVotoAEleccionDeUnCandidatoQueNoSeEnecuentraEnLaMisma() throws VotoInvalidoException {
 
+        Partido partidoInexistente = new Partido("Inexistente");
+        Candidato candidatoInexistente = new Candidato("Inexistente", partidoInexistente);
+        Voto votoInvalido = new Voto(candidatoInexistente, this.provinciaBuenosAires);
+        this.unaEleccion.agregarVoto(votoInvalido);
+    }
 }

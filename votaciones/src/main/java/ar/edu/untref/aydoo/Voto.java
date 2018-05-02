@@ -15,7 +15,6 @@ public class Voto {
     }
 
     public Candidato getCandidato() {
-        System.out.println(this.candidatoVotado);
         return this.candidatoVotado;
     }
 }

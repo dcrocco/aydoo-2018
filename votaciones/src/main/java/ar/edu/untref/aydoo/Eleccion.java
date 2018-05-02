@@ -14,7 +14,10 @@ public class Eleccion {
         this.votos = new ArrayList<>();
     }
 
-    public void agregarVoto(Voto voto) {
+    public void agregarVoto(Voto voto) throws VotoInvalidoException {
+        if (!this.candidatosAEleccion.contains(voto.getCandidato())){
+            throw new VotoInvalidoException("El voto contiene un candidato que no se encuentra en la elección");
+        }
         this.votos.add(voto);
     }
 
