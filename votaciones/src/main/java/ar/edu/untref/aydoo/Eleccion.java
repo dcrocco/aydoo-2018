@@ -34,7 +34,24 @@ public class Eleccion {
         return candidatoMasVotado;
     }
 
+    public Candidato obtenerCandidatoConMasVotosNacional() {
+        Candidato candidatoMasVotado = null;
+        long totalVotos = 0;
+
+        for (Candidato candidato: this.candidatosAEleccion) {
+           long totalVotosCandidato = this.votos.stream().filter(voto -> voto.getCandidato() == candidato).count();
+
+           if (totalVotosCandidato > totalVotos){
+               totalVotos = totalVotosCandidato;
+               candidatoMasVotado = candidato;
+           }
+        }
+
+        return candidatoMasVotado;
+    }
+
     private List<Voto> obtenerVotosPorProvincia(Provincia provincia){
         return this.votos.stream().filter(voto -> voto.getProvincia() == provincia).collect(Collectors.toList());
     }
+
 }
