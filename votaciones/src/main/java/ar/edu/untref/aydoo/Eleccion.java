@@ -23,14 +23,14 @@ public class Eleccion {
 
     public Candidato obtenerCandidatoConMasVotosEnProvincia(Provincia provincia) {
         List<Voto> votosPorProvincia = this.obtenerVotosPorProvincia(provincia);
-        return this.obtenerCandiadtoMasVotadoDesdeLosVotos(votosPorProvincia);
+        return this.obtenerCandidatoMasVotadoDesdeLosVotos(votosPorProvincia);
     }
 
     public Candidato obtenerCandidatoConMasVotosNacional() {
-        return this.obtenerCandiadtoMasVotadoDesdeLosVotos(this.votos);
+        return this.obtenerCandidatoMasVotadoDesdeLosVotos(this.votos);
     }
 
-    private Candidato obtenerCandiadtoMasVotadoDesdeLosVotos(List<Voto> votos){
+    private Candidato obtenerCandidatoMasVotadoDesdeLosVotos(List<Voto> votos){
         Candidato candidatoMasVotado = null;
         long totalVotos = 0;
 
