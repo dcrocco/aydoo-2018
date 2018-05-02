@@ -43,6 +43,12 @@ public class Fibonacci {
 
         if (args.length > 1){
 
+            List argsAsList = Arrays.asList(args);
+            if (argsAsList.contains("-m=s")){
+                new_prefix += "s";
+                stringSequence = " " + stringSequence;
+            }
+
             for (int i = 0; i < args.length - 1; i++){
                 if (args[i].matches("-o=[vh][i]")){
                     stringSequence = new PrinterWithDirection('i').print(stringSequence);
@@ -55,12 +61,6 @@ public class Fibonacci {
                     saveToFile = true;
                 }
 
-            }
-
-            List argsAsList = Arrays.asList(args);
-            if (argsAsList.contains("-m=s")){
-                new_prefix += "s";
-                stringSequence = " " + stringSequence;
             }
 
         }
