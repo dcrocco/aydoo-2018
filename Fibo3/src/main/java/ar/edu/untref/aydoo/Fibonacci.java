@@ -37,15 +37,11 @@ public class Fibonacci {
     static String printFibonacciSequence(String stringSequence, int fibo_number, String[] args) {
 
         String prefix = "fibo<"+fibo_number+">";
+        String new_prefix = prefix;
         boolean saveToFile = false;
         String fileName = "";
 
         if (args.length > 1){
-            List argsAsList = Arrays.asList(args);
-            if (argsAsList.contains("-m=s")){
-                prefix += "s";
-                stringSequence = " " + stringSequence;
-            }
 
             for (int i = 0; i < args.length - 1; i++){
                 if (args[i].matches("-o=[vh][i]")){
@@ -60,8 +56,16 @@ public class Fibonacci {
                 }
 
             }
+
+            List argsAsList = Arrays.asList(args);
+            if (argsAsList.contains("-m=s")){
+                new_prefix += "s";
+                stringSequence = " " + stringSequence;
+            }
+
         }
-        stringSequence = prefix+":"+stringSequence;
+
+        stringSequence = new_prefix+":"+stringSequence;
 
         if (saveToFile){
             try{
