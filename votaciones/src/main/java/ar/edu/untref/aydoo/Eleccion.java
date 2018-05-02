@@ -8,6 +8,7 @@ public class Eleccion {
 
     private List<Candidato> candidatosAEleccion;
     private List<Voto> votos;
+
     public Eleccion(List<Candidato> candidatosAEleccion) {
         this.candidatosAEleccion = candidatosAEleccion;
         this.votos = new ArrayList<>();
@@ -18,35 +19,26 @@ public class Eleccion {
     }
 
     public Candidato obtenerCandidatoConMasVotosEnProvincia(Provincia provincia) {
-
         List<Voto> votosPorProvincia = this.obtenerVotosPorProvincia(provincia);
-        Candidato candidatoMasVotado = null;
-        long totalVotos = 0;
-
-        for (Candidato candidato: this.candidatosAEleccion) {
-           long totalVotosCandidato = votosPorProvincia.stream().filter(voto -> voto.getCandidato() == candidato).count();
-           if (totalVotosCandidato > totalVotos){
-               totalVotos = totalVotosCandidato;
-               candidatoMasVotado = candidato;
-           }
-        }
-
-        return candidatoMasVotado;
+        return this.obtenerCandiadtoMasVotadoDesdeLosVotos(votosPorProvincia);
     }
 
     public Candidato obtenerCandidatoConMasVotosNacional() {
+        return this.obtenerCandiadtoMasVotadoDesdeLosVotos(this.votos);
+    }
+
+    private Candidato obtenerCandiadtoMasVotadoDesdeLosVotos(List<Voto> votos){
         Candidato candidatoMasVotado = null;
         long totalVotos = 0;
 
         for (Candidato candidato: this.candidatosAEleccion) {
-           long totalVotosCandidato = this.votos.stream().filter(voto -> voto.getCandidato() == candidato).count();
+           long totalVotosCandidato = votos.stream().filter(voto -> voto.getCandidato() == candidato).count();
 
            if (totalVotosCandidato > totalVotos){
                totalVotos = totalVotosCandidato;
                candidatoMasVotado = candidato;
            }
         }
-
         return candidatoMasVotado;
     }
 
