@@ -46,6 +46,20 @@ public class EleccionTest {
     }
 
     @Test
+    public void obtenerCandidatoConMasVotosANivelNacional(){
+
+        Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
+        Voto votoIzquierda1 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
+        Voto votoIzquierda2 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
+
+        this.unaEleccion.agregarVoto(votoDerecha1);
+        this.unaEleccion.agregarVoto(votoIzquierda1);
+        this.unaEleccion.agregarVoto(votoIzquierda2);
+
+        Assert.assertEquals(candidatoIzquierda, unaEleccion.obtenerCandidatoConMasVotosNacional());
+    }
+
+    @Test
     public void obtenerCandidatoConMasVotosANivelNacionalConDistintoEnProvincia(){
 
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
