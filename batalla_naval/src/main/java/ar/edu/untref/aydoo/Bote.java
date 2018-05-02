@@ -1,6 +1,6 @@
 package ar.edu.untref.aydoo;
 
-class Bote extends Barco {
+public class Bote extends Barco {
 
     @Override
     boolean estaEn(Posicion unaPosicion) {
@@ -11,17 +11,17 @@ class Bote extends Barco {
     }
 
     @Override
-    ResultadoDeDisparo recibirDisparo() {
+    public ResultadoDeDisparo recibirDisparo() {
         return ResultadoDeDisparo.HUNDIDO;
     }
 
     @Override
-    Posicion obtenerLimites() {
+    public Posicion obtenerLimites() {
         return this.getPosicion();
     }
 
     @Override
-    boolean seSuperponeCon(Barco unBarco) {
+    public boolean seSuperponeCon(Barco unBarco) {
         return unBarco.estaEn(this.getPosicion());
     }
 

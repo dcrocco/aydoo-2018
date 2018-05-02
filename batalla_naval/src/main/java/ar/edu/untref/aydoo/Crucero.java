@@ -6,7 +6,7 @@ public class Crucero extends Barco{
     private boolean orientacionHorizontal;
     private int longitud;
 
-    Crucero (){
+    public Crucero (){
         this.longitud = 2;
         this.disparos = 0;
         this.orientacionHorizontal = true;
@@ -27,7 +27,7 @@ public class Crucero extends Barco{
      * @return Posicion: Posicion de sus limites
      */
     @Override
-    Posicion obtenerLimites() {
+    public Posicion obtenerLimites() {
         int filas = this.getPosicion().getFila();
         int columnas = this.getPosicion().getColumna();
 
@@ -69,7 +69,7 @@ public class Crucero extends Barco{
      * @return boolean: true si está en la posición a comparar.
      */
     @Override
-    boolean estaEn(Posicion unaPosicion) {
+    public boolean estaEn(Posicion unaPosicion) {
         boolean estaEnFila = false;
         boolean estaEnColumna = false;
 
@@ -105,11 +105,11 @@ public class Crucero extends Barco{
         return estaEnFila && estaEnColumna;
     }
 
-    boolean isOrientacionHorizontal() {
+    public boolean isOrientacionHorizontal() {
         return orientacionHorizontal;
     }
 
-    void setOrientacionHorizontal(boolean orientacionHorizontal) {
+    public void setOrientacionHorizontal(boolean orientacionHorizontal) {
         this.orientacionHorizontal = orientacionHorizontal;
     }
 }
