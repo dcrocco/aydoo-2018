@@ -46,7 +46,7 @@ public class EleccionTest {
     }
 
     @Test
-    public void obtenerCandidatoConMasVotosANivelNacional() throws VotoInvalidoException {
+    public void obtenerPartidoConMasVotosANivelNacionalConUnSoloCandidato() throws VotoInvalidoException {
 
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
         Voto votoIzquierda1 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
@@ -56,25 +56,24 @@ public class EleccionTest {
         this.unaEleccion.agregarVoto(votoIzquierda1);
         this.unaEleccion.agregarVoto(votoIzquierda2);
 
-        Assert.assertEquals(candidatoIzquierda, unaEleccion.obtenerCandidatoConMasVotosNacional());
+        Assert.assertEquals(this.partidoIzquierda, unaEleccion.obtenerPartidoConMasVotosNacional());
     }
 
     @Test
-    public void obtenerCandidatoConMasVotosANivelNacionalConDistintoEnProvincia() throws VotoInvalidoException {
+    public void obtenerPartidoConMasVotosANivelNacionalConDistintosCandidatosEnDistintasProvincias() throws VotoInvalidoException {
+
+        Candidato candidatoDerecha2 = new Candidato("Mirta", this.partidoDerecha);
+        this.listaDeCandidatos.add(candidatoDerecha2);
 
         Voto votoDerecha1 = new Voto(this.candidatoDerecha, this.provinciaBuenosAires);
-        Voto votoDerecha2 = new Voto(this.candidatoDerecha, this.provinciaSanLuis);
-        Voto votoDerecha3 = new Voto(this.candidatoDerecha, this.provinciaSanLuis);
+        Voto votoDerecha2 = new Voto(candidatoDerecha2, this.provinciaSanLuis);
         Voto votoIzquierda1 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
-        Voto votoIzquierda2 = new Voto(this.candidatoIzquierda, this.provinciaBuenosAires);
 
         this.unaEleccion.agregarVoto(votoDerecha1);
         this.unaEleccion.agregarVoto(votoDerecha2);
-        this.unaEleccion.agregarVoto(votoDerecha3);
         this.unaEleccion.agregarVoto(votoIzquierda1);
-        this.unaEleccion.agregarVoto(votoIzquierda2);
 
-        Assert.assertEquals(candidatoDerecha, unaEleccion.obtenerCandidatoConMasVotosNacional());
+        Assert.assertEquals(this.partidoDerecha, unaEleccion.obtenerPartidoConMasVotosNacional());
     }
 
     @Test(expected = VotoInvalidoException.class)
@@ -85,4 +84,5 @@ public class EleccionTest {
         Voto votoInvalido = new Voto(candidatoInexistente, this.provinciaBuenosAires);
         this.unaEleccion.agregarVoto(votoInvalido);
     }
+
 }

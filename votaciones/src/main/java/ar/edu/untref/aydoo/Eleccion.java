@@ -26,8 +26,32 @@ public class Eleccion {
         return this.obtenerCandidatoMasVotadoDesdeLosVotos(votosPorProvincia);
     }
 
-    public Candidato obtenerCandidatoConMasVotosNacional() {
-        return this.obtenerCandidatoMasVotadoDesdeLosVotos(this.votos);
+    public Partido obtenerPartidoConMasVotosNacional() {
+        return this.obtenerPartidoMasVotadoDesdeLosVotos(this.votos);
+    }
+
+    private Partido obtenerPartidoMasVotadoDesdeLosVotos(List<Voto> votos) {
+
+        Partido partidoMasVotado = null;
+        // Obtenemos los partidos que participan
+        List<Partido> totalPartidos = this.candidatosAEleccion.stream().map(Candidato::getPartido).collect(Collectors.toList());
+
+        long totalVotos = 0;
+
+        for (Partido partido: totalPartidos) {
+            // Obtenemos para cada partido los candidatos
+            List<Candidato> candidatosPartido = this.candidatosAEleccion.stream().
+                    filter(candidato -> candidato.getPartido() == partido).collect(Collectors.toList());
+
+            // Filtramos los votos para los candidatos del partido y los contamos
+            long totalVotosPartido = votos.stream().filter(voto -> candidatosPartido.contains(voto.getCandidato())).count();
+
+            if (totalVotosPartido > totalVotos){
+               totalVotos = totalVotosPartido;
+               partidoMasVotado = partido;
+            }
+        }
+        return partidoMasVotado;
     }
 
     private Candidato obtenerCandidatoMasVotadoDesdeLosVotos(List<Voto> votos){

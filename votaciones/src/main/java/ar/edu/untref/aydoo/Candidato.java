@@ -10,4 +10,7 @@ public class Candidato {
         this.partido = partido;
     }
 
+    public Partido getPartido(){
+        return this.partido;
+    }
 }
