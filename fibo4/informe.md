@@ -5,6 +5,7 @@ El ejercicio cumple tanto en su mayor parte con la consigna de fibo3 como con la
 Con respecto a la consigna:
   - No contempla el caso de utilizar los argumentos en distintas posiciones (ej: java -jar fibo.jar -m=s -o=hd 5 en lugar de java -jar fibo.jar -o=hd -m=s 5).
   - Solo valida el caso de opciones inválidas en el caso de los argumentos de fibo2, pero no está extendido para los nuevos casos.
+  - No contempla casos de excepciones.
 
 Con respecto a Solid se detectó:
    - Violación del principio de única responsabilidad, principalmente en las clases Program y Fibonacci: La clase Program valida argumentos e imprime el output. La clase Fibonacci calcula la sucesión y también la invierte.

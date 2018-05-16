@@ -2,19 +2,29 @@ package ar.edu.untref.aydoo;
 
 public class ArgumentValidator {
 
-    private final static String OPTION_VD = "-o=vd";
-    private final static String OPTION_VI = "-o=vi";
-    private final static String OPTION_HD = "-o=hd";
-    private final static String OPTION_HI = "-o=hi";
+    private final static String[] validArguments = new String[]{"-o=[vhp][di]", "-m=[ls]", "-n=[p]", "-f=[^\\s]+"};
 
     public Boolean checkArguments(String[] arguments) {
-        if (arguments.length == 2) {
-            return checkFirstArgument(arguments[0]);
+        boolean legal_arguments = true;
+
+        if (arguments.length > 1){
+            for (int i = 0; i < arguments.length - 1; i++) {
+                legal_arguments = false;
+                for (String validArgument : validArguments) {
+                    if (arguments[i].matches(validArgument)) {
+                        legal_arguments = true;
+                    }
+                }
+            }
         }
-        return arguments.length <= 4;
+        // El ultimo parámetro debe ser el número de la secuencia de fibonacci
+        try{
+            Integer.parseInt(arguments[arguments.length - 1]);
+        }catch (Exception e){
+            legal_arguments = false;
+        }
+
+        return legal_arguments;
     }
 
-    private Boolean checkFirstArgument(String firstArgument) {
-        return (firstArgument.equals(OPTION_VD) || firstArgument.equals(OPTION_VI) || firstArgument.equals(OPTION_HD) || firstArgument.equals(OPTION_HI));
-    }
 }
