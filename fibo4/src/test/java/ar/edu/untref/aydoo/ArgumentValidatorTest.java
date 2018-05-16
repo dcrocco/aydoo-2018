@@ -49,4 +49,49 @@ public class ArgumentValidatorTest {
         Assert.assertTrue(isRight);
     }
 
+    @Test
+    public void checkProgresiveAndDirectShouldReturnTrue(){
+
+        ArgumentValidator validator = new ArgumentValidator();
+        String[] arguments = new String[]{"-o=pd", "8"};
+        Boolean isRight = validator.checkArguments(arguments);
+        Assert.assertTrue(isRight);
+    }
+
+    @Test
+    public void checkProgresiveAndInverseShouldReturnTrue(){
+
+        ArgumentValidator validator = new ArgumentValidator();
+        String[] arguments = new String[]{"-o=pi", "8"};
+        Boolean isRight = validator.checkArguments(arguments);
+        Assert.assertTrue(isRight);
+    }
+
+    @Test
+    public void checkProgresiveAndHorizontalShouldReturnFalse(){
+
+        ArgumentValidator validator = new ArgumentValidator();
+        String[] arguments = new String[]{"-o=ph", "8"};
+        Boolean isRight = validator.checkArguments(arguments);
+        Assert.assertFalse(isRight);
+    }
+
+    @Test
+    public void checkProgresiveAndVerticalShouldReturnFalse(){
+
+        ArgumentValidator validator = new ArgumentValidator();
+        String[] arguments = new String[]{"-o=pv", "8"};
+        Boolean isRight = validator.checkArguments(arguments);
+        Assert.assertFalse(isRight);
+    }
+
+    @Test
+    public void checkPairShouldReturnTrue(){
+
+        ArgumentValidator validator = new ArgumentValidator();
+        String[] arguments = new String[]{"-n=p", "8"};
+        Boolean isRight = validator.checkArguments(arguments);
+        Assert.assertTrue(isRight);
+    }
+
 }
