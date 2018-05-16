@@ -1,16 +1,12 @@
-Exercise Fibonacci 3
-====================
+Ejercicio Fibonacci 4
+=====================
 
-This project is an example to take as a basis for the different projects of the subject. The project is based on Maven 3 and already has a set of preconfigured tools:
-
-JUnit
-Cucumber-JVM
-Cobertura
-PMD
-CheckStyle
-Commands:
-
-To compile and run the tests: mvn clean test
-To generate an executable jar package: mvn clean package. The resulting package will be found in the target directory with the name that has been specified in the finalName of pom.xml.
-To run the tests and measure coverage: mvn clean coverage:coverage. The resulting report will be found in target/site/cobertura/index.html.
-To check the style with CheckStyle: mvn clean checkstyle:checkstyle. The resulting report will be found in target/site/checkstyle.html
+Agregue el código recibido en el directorio "fibo4" de su repositorio
+A continuación analice el código recibido y escriba un informe (archivo informe.md) reportando en dicho archivo su opinion sobre el modelo/código recibido. Considere las siguiente cuestiones:
+    ¿cumple con la consigna fibo3?
+    ¿tiene suficientes tests?
+    ¿respeta la convenciones Java?
+    ¿respecta los principio SOLID? en caso que no los respete indique que principio viola y porque
+Una vez realizado el análisis implemente las siguientes modificaciones:
+    Agregar una opción para impresión progresiva (ver Ejemplos).
+    Agregar una opción para imprimir solo los números pares (ver Ejemplos).
