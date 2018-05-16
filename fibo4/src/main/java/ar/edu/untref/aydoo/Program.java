@@ -11,7 +11,7 @@ public class Program {
             args = completeArguments(args);
             Fibonacci aFibonacci = createFibonacci(args);
 
-            Boolean isVertical = ("-o=vd".equals(args[0]) || "-o=vi".equals(args[0]));
+            Boolean isVertical = args[0].matches("-o=[v][a-zA-Z]");
             String successionWithFormat = giveShapeToFibonacci(aFibonacci, isVertical);
             String output = obtainOutput(args, aFibonacci, isVertical, successionWithFormat);
             System.out.println(output);
@@ -36,7 +36,8 @@ public class Program {
 
     private static Fibonacci createFibonacci(String[] args) {
         limitSuccession = obtainLimitSuccession(args);
-        Boolean isInverted = ("-o=hi".equals(args[0]) || "-o=vi".equals(args[0]));
+
+        Boolean isInverted = args[0].matches("-o=[a-zA-Z][i]");
         return new Fibonacci(limitSuccession, isInverted);
     }
 
