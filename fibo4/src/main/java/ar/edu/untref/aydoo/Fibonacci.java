@@ -1,6 +1,7 @@
 package ar.edu.untref.aydoo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,5 +43,9 @@ public class Fibonacci {
             sum += eachNumber;
         }
         return sum;
+    }
+
+    public void keepOnlyPairs(){
+        this.succession.removeIf(number -> (number % 2 != 0 || number == 0));
     }
 }

@@ -36,9 +36,18 @@ public class Program {
 
     private static Fibonacci createFibonacci(String[] args) {
         limitSuccession = obtainLimitSuccession(args);
-
         Boolean isInverted = args[0].matches("-o=[a-zA-Z][i]");
-        return new Fibonacci(limitSuccession, isInverted);
+        Fibonacci fibo = new Fibonacci(limitSuccession, isInverted);
+        return keepOnlyPairs(fibo, args);
+    }
+
+    private static Fibonacci keepOnlyPairs(Fibonacci fibo, String[] args){
+        for (int i = 0; i < args.length - 1; i++){
+            if (args[i].matches("-n=[p]")){
+                fibo.keepOnlyPairs();
+            }
+        }
+        return fibo;
     }
 
     private static String obtainNameFile(String argument) {

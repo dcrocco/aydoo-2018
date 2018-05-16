@@ -68,4 +68,15 @@ public class FibonacciTest {
 
         Assert.assertArrayEquals(expectedsValues, results.toArray());
     }
+
+    @Test
+    public void getPairSucession()  {
+
+        Fibonacci fibonacci = new Fibonacci(4, false);
+        Integer[] expectedsValues = new Integer[]{2};
+        fibonacci.keepOnlyPairs();
+        List<Integer> results = fibonacci.getSuccession();
+        System.out.println(results);
+        Assert.assertArrayEquals(expectedsValues, results.toArray());
+    }
 }
