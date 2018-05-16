@@ -12,7 +12,7 @@ public class Program {
             Fibonacci aFibonacci = createFibonacci(args);
 
             Boolean isVertical = args[0].matches("-o=[v][a-zA-Z]");
-            String successionWithFormat = giveShapeToFibonacci(aFibonacci, isVertical);
+            String successionWithFormat = giveShapeToFibonacci(aFibonacci, args[0]);
             String output = obtainOutput(args, aFibonacci, isVertical, successionWithFormat);
             System.out.println(output);
         } else {
@@ -55,11 +55,13 @@ public class Program {
         return arrayArgument[1];
     }
 
-    private static String giveShapeToFibonacci(Fibonacci aFibonacci, Boolean isVertical) {
+    private static String giveShapeToFibonacci(Fibonacci aFibonacci, String args) {
         ShapeToFibonacci shapeToFibonacci;
-        if (isVertical) {
+        if (args.matches("-o=[v][a-zA-Z]")){
             shapeToFibonacci = new VerticalFibonacci();
-        } else {
+        }else if (args.matches("-o=[p][a-zA-Z]")){
+            shapeToFibonacci = new ProgressiveFibonacci();
+        }else{
             shapeToFibonacci = new HorizontalFibonacci();
         }
         return shapeToFibonacci.giveShape(aFibonacci.getSuccession());

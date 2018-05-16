@@ -5,14 +5,14 @@ public class ArgumentValidator {
     private final static String[] validArguments = new String[]{"-o=[vhp][di]", "-m=[ls]", "-n=[p]", "-f=[^\\s]+"};
 
     public Boolean checkArguments(String[] arguments) {
-        boolean legal_arguments = true;
+        boolean legalArguments = true;
 
         if (arguments.length > 1){
             for (int i = 0; i < arguments.length - 1; i++) {
-                legal_arguments = false;
+                legalArguments = false;
                 for (String validArgument : validArguments) {
                     if (arguments[i].matches(validArgument)) {
-                        legal_arguments = true;
+                        legalArguments = true;
                     }
                 }
             }
@@ -21,10 +21,10 @@ public class ArgumentValidator {
         try{
             Integer.parseInt(arguments[arguments.length - 1]);
         }catch (Exception e){
-            legal_arguments = false;
+            legalArguments = false;
         }
 
-        return legal_arguments;
+        return legalArguments;
     }
 
 }
